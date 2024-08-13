@@ -1,16 +1,8 @@
 # Load the base image - using Alpine because it's lightweight
 FROM alpine:3.20
-# FROM debian
 
-# Update the package index, upgrade installed packages, and install Nginx
-RUN apk update && apk upgrade && apk add nginx
-# RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx
-
-# # Copy custom Nginx configuration file
-# COPY nginx.conf /etc/nginx/nginx.conf
-
-# # Copy static content (optional)
-# COPY index.html /usr/share/nginx/html/index.html
+# Update the package index, upgrade installed packages, and install php
+RUN apk update && apk upgrade && apk add wordpress
 
 # Expose ports (this directive is actually purely for documentation, as it does not publish the ports)
 EXPOSE 80
