@@ -2,11 +2,7 @@
 FROM alpine:3.20
 
 # Update the package index, upgrade installed packages, and install php
-RUN apk update && apk upgrade && apk add wordpress
+RUN apk update && apk upgrade && apk add php php-fpm
 
-# Expose ports (this directive is actually purely for documentation, as it does not publish the ports)
-EXPOSE 80
-EXPOSE 443
-
-# Run Nginx in the foreground - if ran in the background, the container halts (explanation: https://stackoverflow.com/questions/18861300/how-to-run-nginx-within-a-docker-container-without-halting)
-CMD ["nginx", "-g", "daemon off;"]
+# Run Php-Fpm in the foreground - if ran in the background, the container halts (explanation: https://stackoverflow.com/questions/18861300/how-to-run-nginx-within-a-docker-container-without-halting)
+CMD ["/usr/sbin/php-fpm8", "-F"]
