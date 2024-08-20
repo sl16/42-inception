@@ -1,13 +1,13 @@
 # Load the base image - using Alpine because it's lightweight
-FROM alpine:3.20
-# FROM debian
+# FROM alpine:3.20
+FROM debian:latest
 
 # Update the package index, upgrade installed packages, and install Nginx
-RUN apk update && apk upgrade && apk add nginx
-# RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx
+# RUN apk update && apk upgrade && apk add nginx
+RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx
 
 # # Copy custom Nginx configuration file
-# COPY nginx.conf /etc/nginx/nginx.conf
+COPY default.conf /etc/nginx/sites-available/.
 
 # # Copy static content (optional)
 # COPY index.html /usr/share/nginx/html/index.html
