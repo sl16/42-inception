@@ -1,6 +1,6 @@
 # Load the base image - using Alpine because it's lightweight
 # FROM alpine:3.20
-FROM debian:latest
+FROM debian:12
 
 # Update the package index, upgrade installed packages, and install php
 # RUN apk update && apk upgrade && apk add php8 php8-fpm
