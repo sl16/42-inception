@@ -7,7 +7,7 @@ FROM debian:12
 RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx
 
 # # Copy custom Nginx configuration file
-COPY default.conf /etc/nginx/sites-available/.
+COPY default /etc/nginx/sites-available/.
 
 # Expose ports (this directive is actually purely for documentation, as it does not publish the ports)
 EXPOSE 80
