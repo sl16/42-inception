@@ -5,11 +5,29 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    networks:
+      inception:
     volumes:
       - ./web:/var/www/html
+    depends_on:
+      - mariadb
+      - wordpress
   wordpress:
     container_name: wp-php
     build: services/wordpress/
     volumes:
       - ./web:/var/www/html
+    networks:
+      inception:
+    depends_on:
+      - mariadb
+  mariadb:
+    container_name: mariadb
+    build: services/mariadb/
+    volumes:
+      - ./database:/var/lib/mysql
+    networks:
+      inception:
     
+networks:
+  inception:

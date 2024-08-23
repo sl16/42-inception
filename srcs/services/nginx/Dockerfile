@@ -6,8 +6,11 @@ FROM debian:12
 # RUN apk update && apk upgrade && apk add nginx
 RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx
 
-# # Copy custom Nginx configuration file
+# Copy custom Nginx configuration file
 COPY default /etc/nginx/sites-available/.
+
+# Change ownership of the /var/www/html directory to www-data so file upload in Wordpress administration is possible
+RUN chown -R www-data:www-data /var/www/html
 
 # Expose ports (this directive is actually purely for documentation, as it does not publish the ports)
 EXPOSE 80
