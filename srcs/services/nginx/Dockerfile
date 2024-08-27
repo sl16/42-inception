@@ -4,7 +4,7 @@ FROM debian:12
 
 # Update the package index, upgrade installed packages, and install Nginx
 # RUN apk update && apk upgrade && apk add nginx
-RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx
+RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx openssl
 
 # Copy custom Nginx configuration file
 COPY default /etc/nginx/sites-available/.
