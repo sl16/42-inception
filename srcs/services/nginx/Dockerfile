@@ -2,16 +2,16 @@
 FROM debian:bullseye
 
 # Install nginx
-RUN apt update && apt upgrade && apt install nginx -y
+RUN apt update && apt upgrade && apt install -y nginx 
 
 # Create necessary folders
 RUN mkdir -p /etc/nginx/ssl && mkdir -p /var/run/nginx
 
-# Install certification authority
+# Install certification authority & generate SSL certificates
 RUN apt install openssl -y && openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=CZ/ST=Prague/L=Prague/O=42/OU=42Prague/CN=vbartos.42.fr/UID=vbartos"
 
 # Copy custom nginx config file into the container
-COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
 # Ensure rights to properly run the service
 RUN chmod 755 /var/www/html && chown -R www-data:www-data /var/www/html
