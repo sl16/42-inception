@@ -31,7 +31,6 @@ if [ ! -e /var/www/wordpress/wp-config.php ]; then
 						--path='/var/www/wordpress' >> /log.txt
 fi
 
-# if /run/php folder does not exist, create it
 if [ ! -d /run/php ]; then
 	mkdir ./run/php
 fi

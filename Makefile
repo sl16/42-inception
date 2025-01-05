@@ -12,13 +12,11 @@ RESET			= \033[0m
 
 all:
 	@echo "$(GREEN)Launching project $(NAME)...$(RESET) (docker-compose up)"
-# @bash srcs/requirements/wordpress/tools/make_dir.sh
-	@docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d
+	@docker-compose -f ./srcs/docker-compose.yml up -d
 
 build:
 	@echo "$(GREEN)Building & launching project $(NAME)...$(RESET) (docker-compose up --build)"
-# @bash srcs/requirements/wordpress/tools/make_dir.sh
-	@docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d --build
+	@docker-compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
 	@echo "$(RED)Stopping project $(NAME)...$(RESET) (docker-compose down)"
