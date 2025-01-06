@@ -40,7 +40,7 @@ services:
     networks:
       - inception
     build: 
-      context: services/wordpress
+      context: services/wp
       dockerfile: Dockerfile
     depends_on:
       - mariadb
@@ -50,17 +50,8 @@ services:
 
 volumes:
   wordpress:
-    driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: '/inception-data/wordpress'
   mariadb:
-    driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: '/inception-data/mariadb'
+
 
 networks:
     inception:
