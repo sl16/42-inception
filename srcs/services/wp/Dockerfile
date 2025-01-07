@@ -21,9 +21,9 @@ RUN chown -R root:root /var/www/wordpress
 # Copy custom .php configuration
 COPY ./php.conf /etc/php/7.4/fpm/pool.d/www.conf
 
-# Download and setup the command-line interface for WordPress
+# # Download and setup the command-line interface for WordPress
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp-cli.phar
 
 # Copy custom WP setup script into the container
 COPY ./setup_wp.sh setup_wp.sh
