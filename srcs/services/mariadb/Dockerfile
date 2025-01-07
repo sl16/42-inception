@@ -9,6 +9,10 @@ COPY ./50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 # Copy custom mariadb setup script into the container
 COPY ./setup_mariadb.sh /setup_mariadb.sh
+RUN chmod +x /setup_mariadb.sh
+
+# Create a directory for the database
+RUN mkdir -p /run/mysqld && chown -R mysql:mysql /run/mysqld
 
 # Expose the default MySQL port
 EXPOSE 3306

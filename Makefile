@@ -27,18 +27,14 @@ down:
 clean: down
 	@echo "$(RED)Removing built files of $(NAME)...$(RESET) (docker system prune)"
 	@docker system prune -a
-	# @sudo rm -rf ~/data/wordpress/*
-	# @sudo rm -rf ~/data/mariadb/*
 
 re: clean build
 
 fclean:
 	@echo "$(RED)Removing ALL $(NAME)-related files...$(RESET) (docker prune)"
-	# @docker stop $$(docker ps -qa)
+	@docker stop $$(docker ps -qa)
 	@docker system prune --all --force --volumes
 	@docker network prune --force
 	@docker volume prune --force
-	# @sudo rm -rf ~/data/wordpress/*
-	# @sudo rm -rf ~/data/mariadb/*
 
 .PHONY	: all build down re clean fclean

@@ -1,11 +1,13 @@
 #!bin/bash
 
 # Ensure MariaDB has enough time to start up
+echo "Entering WP script"
 sleep 10
 
 # Setup the Wordpress page, connect it to MariaDB, setup users
 if [ ! -e /var/www/wordpress/wp-config.php ]; then
 
+	echo "Creating WP config"
 	wp config create	--allow-root \
 						--dbname=$DB_NAME \
 						--dbuser=$DB_USER \
@@ -15,6 +17,7 @@ if [ ! -e /var/www/wordpress/wp-config.php ]; then
 
 	sleep 2
 
+	echo "Installing WP site"
 	wp core install		--url=$DOMAIN_NAME \
 						--title=$SITE_TITLE \
 						--admin_user=$WP_ADMIN \
@@ -25,6 +28,7 @@ if [ ! -e /var/www/wordpress/wp-config.php ]; then
 
 	sleep 2
 	
+	echo "Creating WP user"
 	wp user create		--allow-root \
 						--role=author $WP_USER $WP_USEREMAIL \
 						--user_pass=$WP_USERPASS \
@@ -37,3 +41,4 @@ fi
 
 # Start PHP-FPM in the foreground
 /usr/sbin/php-fpm7.4 -F
+echo "Exiting WP script"
