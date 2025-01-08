@@ -10,10 +10,10 @@ RUN apt update && apt upgrade && apt install -y \
 	mariadb-client
 
 # Download Wordpress into /var/www
-RUN wget https://wordpress.org/wordpress-6.0.tar.gz -P /var/www
+RUN wget https://wordpress.org/latest.tar.gz -P /var/www
 
 # Extract the tar
-RUN cd /var/www && tar -xzf wordpress-6.0.tar.gz && rm wordpress-6.0.tar.gz
+RUN cd /var/www && tar -xzf latest.tar.gz && rm latest.tar.gz
 
 # Ensure the root user has owner permissions
 RUN chown -R root:root /var/www/wordpress
