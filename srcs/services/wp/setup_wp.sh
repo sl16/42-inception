@@ -37,6 +37,14 @@ if [ ! -e /var/www/wordpress/wp-config.php ]; then
 						--role=author $WP_USER $WP_USEREMAIL \
 						--user_pass=$WP_USERPASS \
 						--path='/var/www/wordpress' >> /log.txt
+
+    wget -O /var/www/wordpress/wp-content/uploads/cat.gif https://media.tenor.com/zlKoX5HPPu8AAAAM/cat-annoyed.gif
+    wp-cli.phar media import /var/www/wordpress/wp-content/uploads/cat.gif --allow-root --path='/var/www/wordpress'
+    IMAGE_ID=$(wp-cli.phar post list --post_type=attachment --post_status=inherit --format=ids --allow-root --path='/var/www/wordpress')
+    wp-cli.phar post create --post_type=page --post_title='Home' --post_status=publish --post_content='<img src="/wp-content/uploads/cat.gif" />' --allow-root --path='/var/www/wordpress'
+    PAGE_ID=$(wp-cli.phar post list --post_type=page --post_title='Home' --format=ids --allow-root --path='/var/www/wordpress')
+    wp-cli.phar option update show_on_front 'page' --allow-root --path='/var/www/wordpress'
+    wp-cli.phar option update page_on_front $PAGE_ID --allow-root --path='/var/www/wordpress'
 fi
 
 if [ ! -d /run/php ]; then

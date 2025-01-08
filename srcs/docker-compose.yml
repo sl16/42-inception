@@ -73,10 +73,10 @@ networks:
 
 secrets:
   db_rootpass:
-    file: db_rootpass.txt
+    file: ./secrets/db_rootpass.txt
   db_pass:
-    file: db_pass.txt
+    file: ./secrets/db_pass.txt
   wp_adminpass:
-    file: wp_adminpass.txt
+    file: ./secrets/wp_adminpass.txt
   wp_userpass:
-    file: wp_userpass.txt
+    file: ./secrets/wp_userpass.txt
