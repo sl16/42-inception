@@ -13,6 +13,9 @@ services:
     restart: on-failure
     expose:
       - "3306"
+    secrets:
+      - db_rootpass
+      - db_pass
 
   wordpress:
     image: wordpress
@@ -30,6 +33,10 @@ services:
     restart: on-failure
     expose: 
       - "9000"
+    secrets:
+      - db_pass
+      - wp_adminpass
+      - wp_userpass
 
   nginx:
     image: nginx
@@ -61,5 +68,15 @@ volumes:
       device: /home/${USER}/data/volume-db
 
 networks:
-    inception:
-      driver: bridge
+  inception:
+    driver: bridge
+
+secrets:
+  db_rootpass:
+    file: db_rootpass.txt
+  db_pass:
+    file: db_pass.txt
+  wp_adminpass:
+    file: wp_adminpass.txt
+  wp_userpass:
+    file: wp_userpass.txt

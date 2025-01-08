@@ -1,0 +1,6 @@
+# For the purpose of portability of this project, both the secrets dir
+# and the .env file are not ignored. In a real-world scenario, you want them
+# to be ignored to protect sensitive information.
+
+# secrets/
+# .env

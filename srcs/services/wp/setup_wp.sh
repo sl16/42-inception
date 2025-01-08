@@ -4,15 +4,10 @@
 echo "Entering WP script"
 sleep 10
 
-# Create the wp-config.php
-# if [ ! -f /var/www/html/wp-config.php ]; then
-#     echo "Setting up wp-config.php..."
-#     cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
-#     sed -i "s/database_name_here/${DB_NAME}/" /var/www/html/wp-config.php
-#     sed -i "s/username_here/${DB_USER}/" /var/www/html/wp-config.php
-#     sed -i "s/password_here/${DB_PASSWORD}/" /var/www/html/wp-config.php
-#     sed -i "s/localhost/${DB_HOST}/" /var/www/html/wp-config.php
-# fi
+# Read secrets
+DB_PASS=$(cat /run/secrets/db_pass)
+WP_ADMINPASS=$(cat /run/secrets/wp_adminpass)
+WP_USERPASS=$(cat /run/secrets/wp_userpass)
 
 # Setup the Wordpress page, connect it to MariaDB, setup users
 if [ ! -e /var/www/wordpress/wp-config.php ]; then
