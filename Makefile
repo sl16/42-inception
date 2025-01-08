@@ -12,7 +12,6 @@ RESET			= \033[0m
 
 all:
 	@echo "$(GREEN)Launching project $(NAME)...$(RESET) (docker-compose up)"
-	@bash srcs/setup_persist_dirs.sh
 	@docker-compose -f ./srcs/docker-compose.yml up -d
 
 build:
