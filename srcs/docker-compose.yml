@@ -3,7 +3,7 @@ services:
     image: mariadb
     container_name: inception-mariadb
     volumes: 
-      - mariadb:/var/lib/mysql
+      - volume-db:/var/lib/mysql
     networks:
       - inception
     build: 
@@ -18,7 +18,7 @@ services:
     image: wordpress
     container_name: inception-wordpress
     volumes:
-      - wordpress:/var/www/wordpress
+      - volume-wp:/var/www/wordpress
     networks:
       - inception
     build: 
@@ -35,7 +35,7 @@ services:
     image: nginx
     container_name: inception-nginx
     volumes:
-      - wordpress:/var/www/wordpress
+      - volume-wp:/var/www/wordpress
     networks:
       - inception
     build: 
@@ -49,9 +49,16 @@ services:
     restart: on-failure
 
 volumes:
-  wordpress:
-  mariadb:
-
+  volume-wp:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/${USER}/data/volume-wp
+  volume-db:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/${USER}/data/volume-db
 
 networks:
     inception:

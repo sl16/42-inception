@@ -1,19 +1,19 @@
 #!/bin/bash
 
 # Ensure the base directory exists
-if [ ! -d "/home/${USER}/inception-persist" ]; then
-	mkdir -p /home/${USER}/inception-persist
+if [ ! -d "/home/${USER}/data" ]; then
+	mkdir -p /home/${USER}/data
 fi
 
 # Ensure the WordPress directory exists
-if [ ! -d "/home/${USER}/inception-persist/wp" ]; then
-	mkdir -p /home/${USER}/inception-persist/wp
+if [ ! -d "/home/${USER}/data/volume-wp" ]; then
+	mkdir -p /home/${USER}/data/volume-wp
 fi
 
 # Ensure the MariaDB directory exists
-if [ ! -d "/home/${USER}/inception-persist/db" ]; then
-	mkdir -p /home/${USER}/inception-persist/db
+if [ ! -d "/home/${USER}/data/volume-db" ]; then
+	mkdir -p /home/${USER}/data/volume-db
 fi
 
 # Set the correct permissions
-sudo chown -R $(whoami):$(whoami) /home/${USER}/inception-persist
+sudo chown -R $(whoami):$(whoami) /home/${USER}/data
